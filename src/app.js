@@ -27,10 +27,12 @@ const httpServer = app.listen(PORT, () => {
 });
 
 const socketServer = new Server(httpServer);
-
+let msgs = [];
 socketServer.on("connection", (socket) => {
   socket.on("msg_front_to_back", (msg) => {
-    console.log(msg);
+    msgs.push(msg);
+    // console.log(msgs);
+    socketServer.emit("listado_de_msgs", msgs);
   });
 
   /* //BACK MANDA MSGS AL FRONT
