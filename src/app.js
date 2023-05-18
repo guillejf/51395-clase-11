@@ -4,7 +4,7 @@ import path from "path";
 import { petsRouter } from "./routes/pets.router.js";
 import { productsRouter } from "./routes/products.router.js";
 import { testPlantillaProducts } from "./routes/test-plantilla-products.router.js";
-import { testSocketRouter } from "./routes/test-socket.router.js";
+import { testChatRouter } from "./routes/test-chat.router.js";
 
 import { __dirname } from "./utils.js";
 import { Server } from "socket.io";
@@ -23,7 +23,7 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 const httpServer = app.listen(PORT, () => {
-  console.log(`Example app listening http://localhost:${PORT}`);
+  console.log(`App runing on ${__dirname} - server http://localhost:${PORT}`);
 });
 
 const socketServer = new Server(httpServer);
@@ -52,7 +52,7 @@ app.use("/api/pets", petsRouter);
 app.use("/test-plantilla-products", testPlantillaProducts);
 
 //QUIERO DEVOLVER HTML DIRECTO PAGINA COMPLETA ARMADA EN EL BACK
-app.use("/test-socket", testSocketRouter);
+app.use("/test-chat", testChatRouter);
 
 //OTROS ENDPOINTS
 app.get("*", (req, res) => {
